@@ -2,36 +2,29 @@
 <html>
 <head>
     <style>
-        body { margin: 0; background: #000; height: 100vh; overflow: hidden; }
+        body { margin: 0; background: #111; height: 100vh; overflow: hidden; font-family: sans-serif; }
 
-        .room-stage {
-            width: 100vw; height: 100vh;
-            display: flex; flex-direction: column;
-        }
+        .room-stage { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
 
-        /* Wall */
-        .wall { height: 60%; width: 100%; background: #121212; border-bottom: 2px solid #333; }
+        /* The Wall: Mylar-like, dark and reflective */
+        .wall { height: 65%; width: 100%; background: #1a1a1a; border-bottom: 3px solid #333; }
 
-        /* Concrete Basement Floor */
+        /* The Floor: Real concrete texture (fine noise) */
         .floor { 
-            height: 40%; width: 100%;
-            background-color: #3a3a3a;
-            /* Creates a random "pitted" concrete texture effect */
-            background-image: 
-                radial-gradient(circle at 20% 30%, #4a4a4a 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, #2a2a2a 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(0,0,0,0.2) 0%, transparent 50%);
-            background-size: 200px 200px;
-            display: flex; justify-content: center; align-items: flex-end; 
-            gap: 5vw; padding-bottom: 5vh;
-            border-top: 4px solid #222;
+            height: 35%; width: 100%;
+            background-color: #333;
+            /* Fine noise texture for concrete */
+            background-image: radial-gradient(#444 1px, transparent 1px);
+            background-size: 4px 4px;
+            display: flex; justify-content: center; align-items: flex-start; 
+            gap: 5vw; padding-top: 2vh;
         }
 
-        /* Plants */
-        .plant-container { display: flex; flex-direction: column; align-items: center; height: 25vh; }
-        .leaf { width: 15vh; height: 15vh; background: #2d5a27; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
-        .stem { width: 1vh; height: 5vh; background: #4e342e; }
-        .pot { width: 10vh; height: 8vh; background: #333; border: 0.5vh solid #555; border-radius: 0 0 2vh 2vh; }
+        /* Plants: Reduced size to stop clipping */
+        .plant-container { display: flex; flex-direction: column; align-items: center; }
+        .leaf { width: 10vh; height: 10vh; background: #2d5a27; border-radius: 50%; }
+        .stem { width: 0.8vh; height: 4vh; background: #4e342e; }
+        .pot { width: 7vh; height: 6vh; background: #222; border: 0.3vh solid #444; border-radius: 0 0 1vh 1vh; }
     </style>
 </head>
 <body>
