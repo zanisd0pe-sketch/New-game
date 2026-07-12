@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Dispo Tycoon: 3D Build</title>
     <style>
-        body { margin: 0; background: #000; overflow: hidden; perspective: 800px; height: 100vh; }
+        body { margin: 0; background: #000; overflow: hidden; perspective: 1000px; height: 100vh; }
         
-        /* The 3D Scene Container */
-        .scene {
-            width: 100vw; height: 100vh;
+        .scene { width: 100vw; height: 100vh; transform-style: preserve-3d; position: relative; }
+
+        /* The Mylar Walls */
+        .wall { width: 100%; height: 60%; background: #0f0f0f; border-bottom: 2px solid #333; }
+
+        /* The 3D Floor */
+        .floor { 
+            width: 100%; height: 40%; 
+            background: linear-gradient(45deg, #1a1a1a 25%, transparent 25%), linear-gradient(-45deg, #1a1a1a 25%, transparent 25%);
+            background-size: 60px 60px; background-color: #050505;
+            transform: rotateX(60deg); transform-origin: top;
+            box-shadow: inset 0 50px 100px rgba(0,0,0,0.9);
+        }
+
+        /* Container for items placed on the floor */
+        .room-content { 
+            position: absolute; top: 60%; width: 100%; height: 40%;
+            display: flex; justify-content: center; align-items: center; gap: 40px;
             transform-style: preserve-3d;
-            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* The Mylar Wall */
-        .wall {
-            width: 100%; height: 60%;
-            background: 
-                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
-                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%);
-            background-size: 40px 40px; background-color: #0f0f0f;
-            border-bottom: 4px solid #333;
-        }
+        /* Plant Asset */
+        .pot-box { display: flex; flex-direction: column; align-items: center; }
+        .leaf { width: 120px; height: 120px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); }
+        .pot { width: 80px; height: 70px; background: #222; border-radius: 5px 5px 20px 20px; border: 2px solid #444; }
 
-        /* The 3D Floor Illusion */
-        .floor {
-            width: 100%; height: 40%;
-            background: 
-                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
-                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%);
-            background-size: 40px 40px; background-color: #050505;
-            transform: rotateX(60deg); /* This creates the 3D slope */
-            transform-origin: top;
-            box-shadow: inset 0 50px 100px rgba(0,0,0,0.8);
-        }
-
-        /* Content sits on the floor */
-        .content { position: absolute; top: 50%; display: flex; gap: 50px; }
+        /* Clutter */
+        .cat { width: 60px; height: 40px; background: #d35400; border-radius: 15px; }
+        .fan { width: 50px; height: 50px; background: #333; border-radius: 50%; border: 3px solid #555; }
     </style>
 </head>
 <body>
     <div class="scene">
         <div class="wall"></div>
         <div class="floor"></div>
-        <div class="content">
-            <!-- Your plants and items go here -->
+        
+        <div class="room-content">
+            <div class="cat"></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
+            <div class="fan"></div>
         </div>
     </div>
 </body>
