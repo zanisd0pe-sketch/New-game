@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Full Build</title>
+    <title>Dispo Tycoon: Cluttered Build</title>
     <style>
         body { background: #050505; color: #ccc; font-family: sans-serif; margin: 0; overflow: hidden; }
-        .room-view { height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; background: #0a0a0a; }
+        .room-view { height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: space-between; background: #0a0a0a; position: relative; padding: 20px; box-sizing: border-box; }
 
-        /* Environmental Detail: The Cat */
-        .cat { position: absolute; bottom: 110px; left: 15%; width: 60px; height: 50px; background: #d35400; border-radius: 40% 40% 10% 10%; z-index: 20; }
+        /* Ceiling clutter */
+        .ceiling-rig { width: 100%; height: 120px; display: flex; justify-content: space-around; align-items: flex-start; }
+        .led-panel { width: 180px; height: 60px; background: #222; border: 2px solid #444; border-radius: 5px; box-shadow: 0 0 15px #333; }
+        .duct-pipe { width: 60px; height: 100px; background: #444; border-radius: 10px; }
 
-        /* Environmental Detail: Power Strip/Cables */
-        .power-strip { position: absolute; bottom: 110px; right: 15%; width: 120px; height: 20px; background: #222; border: 2px solid #444; z-index: 20; }
+        /* Floor clutter */
+        .floor-clutter { position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; justify-content: space-evenly; align-items: flex-end; padding-bottom: 20px; }
+        .cat { width: 70px; height: 50px; background: #d35400; border-radius: 30px; }
+        .power-strip { width: 150px; height: 30px; background: #333; border-radius: 5px; }
+        .fan { width: 80px; height: 80px; background: #222; border-radius: 50%; border: 4px solid #444; }
 
-        .plant-row { display: flex; gap: 80px; align-items: flex-end; margin-bottom: 120px; }
+        /* Plants */
+        .plant-row { display: flex; gap: 40px; align-items: flex-end; }
         .pot-box { display: flex; flex-direction: column; align-items: center; }
-
-        /* Stem and Leaf Structure */
-        .plant-container { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .stem { width: 8px; height: 60px; background: #4e342e; margin-bottom: -10px; border-radius: 2px; }
-        .leaf { 
-            width: 200px; height: 200px; background: #2d5a27;
-            clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%);
-        }
-
-        /* Proper Fabric Grow Bag */
-        .pot { width: 130px; height: 110px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 50px 50px; }
-
-        .floor { width: 100%; height: 110px; background: #000; border-top: 4px solid #222; position: absolute; bottom: 0; }
+        .stem { width: 8px; height: 50px; background: #4e342e; }
+        .leaf { width: 140px; height: 140px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); }
+        .pot { width: 100px; height: 80px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 30px 30px; }
     </style>
 </head>
 <body>
     <div class="room-view">
-        <div class="cat"></div>
-        <div class="power-strip"></div>
-        
-        <div class="plant-row">
-            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
-            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
-            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
+        <div class="ceiling-rig">
+            <div class="led-panel"></div>
+            <div class="duct-pipe"></div>
+            <div class="led-panel"></div>
         </div>
-        
-        <div class="floor"></div>
+
+        <div class="plant-row">
+            <div class="pot-box"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
+        </div>
+
+        <div class="floor-clutter">
+            <div class="cat"></div>
+            <div class="power-strip"></div>
+            <div class="fan"></div>
+        </div>
     </div>
 </body>
 </html>
