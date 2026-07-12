@@ -12,17 +12,13 @@
 </head>
 <body>
     <h1>DISPO TYCOON</h1>
-    
     <div class="dispensary-layout">
-        <!-- GROW ROOM -->
         <div class="room">
             <h2>GROW ROOM</h2>
             <p>Supply: <span id="weed">0</span>g</p>
             <p>Growers Hired: <span id="growers">0</span></p>
             <button onclick="buyGrower()">Hire Grower ($50)</button>
         </div>
-
-        <!-- DISPENSARY AREA -->
         <div class="room">
             <div class="counter-top">🛒</div>
             <h2>COUNTERTOP</h2>
@@ -30,10 +26,8 @@
             <p id="status">Waiting for customers...</p>
         </div>
     </div>
-
     <script>
         let money = 0; let weed = 0; let growers = 0;
-        
         function buyGrower() {
             if (money >= 50) { money -= 50; growers++; updateDisplay(); }
         }
@@ -42,11 +36,7 @@
             document.getElementById("weed").innerText = weed;
             document.getElementById("growers").innerText = growers;
         }
-
-        // Production
         setInterval(() => { weed += growers; updateDisplay(); }, 1000);
-
-        // Sales at the Countertop
         setInterval(() => {
             if (weed >= 1) {
                 weed--; money += 10;
