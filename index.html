@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Stable Build</title>
+    <title>Dispo Tycoon: Immersive Room</title>
     <style>
-        body { margin: 0; background: #050505; color: #fff; font-family: sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; color: #fff; font-family: sans-serif; overflow: hidden; }
         
-        /* The Room: Uses a gradient to create a floor-to-wall depth illusion */
-        .room-container { 
-            height: 100vh; width: 100vw; 
-            background: 
-                /* Mylar Wall Texture */
-                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
-                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-                /* Floor Gradient (The depth illusion) */
-                linear-gradient(to bottom, #000 0%, #111 60%, #222 100%);
-            background-size: 40px 40px, 40px 40px, 100% 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-            padding-bottom: 50px;
+        /* The "Room" container provides the depth */
+        .room { 
+            position: relative; width: 100%; height: 100%; 
+            background: linear-gradient(to bottom, #111 0%, #000 60%);
         }
 
-        /* Items Container - Always visible */
-        .items-layer { 
-            display: flex; gap: 30px; align-items: flex-end; 
-            z-index: 10; padding-bottom: 20px;
+        /* The Mylar Wall texture, applied to the top half */
+        .wall { 
+            height: 60%; width: 100%;
+            background-image: radial-gradient(circle at 50% 50%, #222 0%, #000 70%);
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* Plant Asset */
+        /* The Floor - Fixed and grounded */
+        .floor { 
+            height: 40%; width: 100%; background: #080808;
+            border-top: 4px solid #1a1a1a;
+            display: flex; justify-content: space-around; align-items: flex-end;
+            padding-bottom: 20px; box-sizing: border-box;
+        }
+
+        /* The Assets: Polished and placed */
         .pot-box { display: flex; flex-direction: column; align-items: center; }
-        .leaf { width: 140px; height: 140px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); }
-        .pot { width: 90px; height: 80px; background: #222; border: 2px solid #444; border-radius: 5px 5px 30px 30px; }
-
-        /* Clutter */
-        .cat { width: 60px; height: 40px; background: #d35400; border-radius: 15px; }
-        .fan { width: 60px; height: 60px; background: #333; border-radius: 50%; border: 3px solid #555; }
+        .leaf { width: 100px; height: 100px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .pot { width: 70px; height: 60px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 20px 20px; }
+        
+        /* Environmental details to make it feel like a room */
+        .clutter { width: 50px; height: 50px; background: #111; border: 1px solid #333; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <div class="room-container">
-        <div class="items-layer">
-            <div class="cat"></div>
+    <div class="room">
+        <div class="wall">
+            <div style="color: #444; font-size: 20px; letter-spacing: 5px;">GROW TENT</div>
+        </div>
+        <div class="floor">
+            <div class="clutter"></div>
             <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
             <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
             <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="fan"></div>
+            <div class="clutter"></div>
         </div>
     </div>
 </body>
