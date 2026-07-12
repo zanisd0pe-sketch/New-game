@@ -8,26 +8,26 @@
         .active { display: flex; }
 
         /* Grow Room: Industrial Tent Vibe */
-        #farm { 
-            background: linear-gradient(to bottom, #1a1a1a, #050505); 
-            border-left: 30px solid #222; border-right: 30px solid #222; 
-        }
+        #farm { background: linear-gradient(135deg, #111 0%, #000 100%); }
         
-        .light-hood { width: 450px; height: 40px; background: #222; border-bottom: 8px solid #444; box-shadow: 0 15px 60px rgba(255, 250, 150, 0.3); margin-bottom: 20px; }
+        /* Wall Assets */
+        .fan { position: absolute; top: 50px; left: 50px; width: 80px; height: 80px; border-radius: 50%; border: 4px solid #444; background: #222; }
+        .nutrient-shelf { position: absolute; top: 50px; right: 50px; width: 100px; height: 150px; background: #333; border: 2px solid #555; display: flex; flex-wrap: wrap; gap: 5px; padding: 5px; }
+        .bottle { width: 20px; height: 40px; background: #8bc34a; border-radius: 2px; }
+
+        .light-hood { width: 600px; height: 30px; background: #222; border-bottom: 8px solid #444; box-shadow: 0 10px 50px rgba(255, 255, 150, 0.2); margin-bottom: 20px; }
         
         /* The Floor/Tarp Layer */
         .tarp-floor { width: 100%; height: 180px; background: #0d0d0d; border-top: 4px solid #333; z-index: 1; }
         
-        /* Plants on the floor */
-        .plant-area { position: absolute; bottom: 80px; display: flex; gap: 60px; z-index: 2; }
-        .plant-container { display: flex; flex-direction: column; align-items: center; }
-        .pot { width: 90px; height: 80px; background: #3d2b1f; border-radius: 5px; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.5); }
-        .plant-top { width: 130px; height: 130px; background: #2e7d32; border-radius: 50% 50% 40% 40%; margin-bottom: -20px; box-shadow: 0 0 20px #1b5e20; }
+        /* Plants on the floor (More of them) */
+        .plant-area { position: absolute; bottom: 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; z-index: 2; }
+        .pot { width: 80px; height: 70px; background: #3d2b1f; border-radius: 5px; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.5); }
+        .plant-top { width: 100px; height: 100px; background: #2e7d32; border-radius: 50% 50% 40% 40%; margin-bottom: -15px; }
 
-        /* UI elements */
         .controls { position: absolute; top: 100px; text-align: center; z-index: 3; }
-        #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
         .map-btn { position: fixed; top: 20px; right: 20px; z-index: 200; padding: 10px; cursor: pointer; background: #222; color: #fff; border: 1px solid #444; }
+        #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
     </style>
 </head>
 <body>
@@ -40,6 +40,13 @@
     </div>
 
     <div id="farm" class="room-view active">
+        <!-- Background Decor -->
+        <div class="fan"></div>
+        <div class="nutrient-shelf">
+            <div class="bottle"></div><div class="bottle"></div><div class="bottle"></div>
+            <div class="bottle"></div><div class="bottle"></div><div class="bottle"></div>
+        </div>
+
         <div class="controls">
             <h2>SUPPLY: <span id="weed">0</span>g</h2>
             <button onclick="growWeed()">HARVEST</button>
@@ -48,9 +55,12 @@
         <div class="light-hood"></div>
         
         <div class="plant-area">
-            <div class="plant-container"><div class="plant-top"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="plant-top"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="plant-top"></div><div class="pot"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
+            <div class="pot"><div class="plant-top"></div></div>
         </div>
         
         <div class="tarp-floor"></div>
@@ -65,7 +75,7 @@
         let money = 0; let weed = 0;
         function toggleMap() { const m = document.getElementById('map-menu'); m.style.display = (m.style.display === 'flex') ? 'none' : 'flex'; }
         function showRoom(id) { document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active')); document.getElementById(id).classList.add('active'); toggleMap(); }
-        function growWeed() { weed += 1; document.getElementById("weed").innerText = weed; }
+        function growWeed() { weed += 6; document.getElementById("weed").innerText = weed; }
         setInterval(() => { if (weed >= 1) { weed--; money += 10; document.getElementById("weed").innerText = weed; document.getElementById("money").innerText = money; } }, 2000);
     </script>
 </body>
