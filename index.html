@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Game</title>
+    <title>Idle Game</title>
     <style>
-        body { background: #222; color: white; text-align: center; font-family: sans-serif; }
-        canvas { border: 2px solid white; margin-top: 20px; }
+        body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
+        #score { font-size: 2em; margin: 20px; }
+        button { padding: 15px 30px; font-size: 1.2em; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>My Awesome Game</h1>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <h1>My Idle Game</h1>
+    <div id="score">Points: 0</div>
+    <button onclick="addPoint()">Click Me!</button>
+
     <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "cyan";
-        ctx.fillRect(150, 150, 100, 100); // Draws a box
+        let score = 0;
+        const scoreDisplay = document.getElementById("score");
+
+        function addPoint() {
+            score++;
+            scoreDisplay.innerText = "Points: " + score;
+        }
     </script>
 </body>
 </html>
+
+
 
