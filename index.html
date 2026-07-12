@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Cluttered Build</title>
+    <title>Dispo Tycoon: Real Tent</title>
     <style>
-        body { background: #050505; color: #ccc; font-family: sans-serif; margin: 0; overflow: hidden; }
-        .room-view { height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: space-between; background: #0a0a0a; position: relative; padding: 20px; box-sizing: border-box; }
+        body { margin: 0; overflow: hidden; background: #000; font-family: sans-serif; }
+        
+        .room-view { 
+            height: 100vh; width: 100vw; 
+            /* Mylar wall pattern with a seam down the middle */
+            background-image: 
+                linear-gradient(90deg, transparent 49%, #222 50%, transparent 51%),
+                linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
+                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            background-color: #0f0f0f;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            padding: 20px; box-sizing: border-box;
+        }
 
-        /* Ceiling clutter */
-        .ceiling-rig { width: 100%; height: 120px; display: flex; justify-content: space-around; align-items: flex-start; }
-        .led-panel { width: 180px; height: 60px; background: #222; border: 2px solid #444; border-radius: 5px; box-shadow: 0 0 15px #333; }
-        .duct-pipe { width: 60px; height: 100px; background: #444; border-radius: 10px; }
+        /* Tent Frame Pole */
+        .frame-pole { position: absolute; left: 10%; top: 0; width: 15px; height: 100%; background: #333; box-shadow: 2px 0 5px #000; }
+        .frame-pole.right { left: 90%; }
 
-        /* Floor clutter */
-        .floor-clutter { position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; justify-content: space-evenly; align-items: flex-end; padding-bottom: 20px; }
-        .cat { width: 70px; height: 50px; background: #d35400; border-radius: 30px; }
-        .power-strip { width: 150px; height: 30px; background: #333; border-radius: 5px; }
-        .fan { width: 80px; height: 80px; background: #222; border-radius: 50%; border: 4px solid #444; }
+        /* Power cable hanging down */
+        .cable { position: absolute; top: 0; left: 30%; width: 4px; height: 300px; background: #111; border-left: 2px solid #222; }
+
+        /* Ceiling Rig */
+        .ceiling-rig { width: 100%; height: 100px; display: flex; justify-content: space-around; z-index: 5; }
+        .led-panel { width: 160px; height: 50px; background: #333; border: 2px solid #555; box-shadow: 0 0 20px #222; }
 
         /* Plants */
-        .plant-row { display: flex; gap: 40px; align-items: flex-end; }
+        .plant-row { display: flex; gap: 40px; align-items: flex-end; z-index: 5; }
         .pot-box { display: flex; flex-direction: column; align-items: center; }
-        .stem { width: 8px; height: 50px; background: #4e342e; }
-        .leaf { width: 140px; height: 140px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); }
-        .pot { width: 100px; height: 80px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 30px 30px; }
+        .leaf { width: 150px; height: 150px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); }
+        .pot { width: 100px; height: 90px; background: #222; border-radius: 5px 5px 30px 30px; }
+
+        /* Floor clutter */
+        .floor-clutter { display: flex; gap: 50px; align-items: flex-end; z-index: 5; padding-bottom: 20px; }
+        .cat { width: 70px; height: 50px; background: #d35400; border-radius: 20px; }
+        .fan { width: 70px; height: 70px; background: #333; border-radius: 50%; }
     </style>
 </head>
 <body>
     <div class="room-view">
+        <div class="frame-pole"></div>
+        <div class="frame-pole right"></div>
+        <div class="cable"></div>
+
         <div class="ceiling-rig">
             <div class="led-panel"></div>
-            <div class="duct-pipe"></div>
             <div class="led-panel"></div>
         </div>
 
         <div class="plant-row">
-            <div class="pot-box"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
-            <div class="pot-box"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
             <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
         </div>
 
         <div class="floor-clutter">
             <div class="cat"></div>
-            <div class="power-strip"></div>
             <div class="fan"></div>
         </div>
     </div>
