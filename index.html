@@ -5,27 +5,25 @@
     <style>
         body { margin: 0; background: #000; color: #fff; font-family: monospace; overflow: hidden; touch-action: none; }
         
-        /* This container will scale to fit any phone screen */
-        #game-wrapper {
-            width: 100vw; height: 100vh;
-            display: flex; flex-direction: column;
-        }
+        #game-wrapper { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
         
-        .hud { padding: 20px; text-align: center; background: #111; font-size: 1.2rem; }
-        .wall { flex-grow: 1; background: #121212; }
-        .floor { 
-            height: 40vh; width: 100%;
-            background-color: #2a2a2a;
-            display: flex; justify-content: center; align-items: flex-end; 
-            gap: 5vw; padding-bottom: 5vh; border-top: 5px solid #111;
+        .hud { padding: 15px; text-align: center; background: #111; }
+        
+        /* The farm is now scrollable if you get too many plants */
+        #farm { 
+            flex-grow: 1; display: flex; flex-wrap: wrap; 
+            justify-content: center; align-content: flex-start;
+            gap: 15px; padding: 20px; overflow-y: auto;
+            background-color: #2a2a2a; border-top: 5px solid #111;
         }
 
-        .plant-container { display: flex; flex-direction: column; align-items: center; }
+        .plant-container { display: flex; flex-direction: column; align-items: center; width: 20vw; }
         .leaf { width: 15vw; height: 15vw; background: #2d5a27; clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%); }
-        .pot { width: 10vw; height: 8vh; background: #333; border: 3px solid #555; border-radius: 5px; }
+        .pot { width: 10vw; height: 8vh; background: #333; border: 2px solid #555; border-radius: 5px; }
 
-        .controls { position: fixed; bottom: 5vh; width: 100%; text-align: center; }
-        button { padding: 4vw 8vw; font-size: 5vw; cursor: pointer; background: #1a1a1a; color: #fff; border: 2px solid #444; }
+        /* Controls anchored to the bottom, NOT covering the plants */
+        .controls { height: 15vh; display: flex; justify-content: center; align-items: center; background: #0a0a0a; }
+        button { padding: 3vw 6vw; font-size: 5vw; cursor: pointer; background: #222; color: #fff; border: 2px solid #444; border-radius: 5px; }
     </style>
 </head>
 <body>
@@ -34,10 +32,9 @@
             <h1>$ <span id="money">0</span></h1>
             <p>Plants: <span id="plant-count">1</span></p>
         </div>
-        <div class="wall"></div>
-        <div class="floor" id="farm"></div>
+        <div id="farm"></div>
         <div class="controls">
-            <button onclick="game.buyPlant()">Buy Plant ($10)</button>
+            <button onclick="game.buyPlant()">Buy Plant ($<span id="cost">10</span>)</button>
         </div>
     </div>
 
@@ -49,13 +46,15 @@
             updateUI() {
                 document.getElementById('money').innerText = Math.floor(this.money);
                 document.getElementById('plant-count').innerText = this.plants;
+                document.getElementById('cost').innerText = this.cost;
             },
             buyPlant() {
                 if (this.money >= this.cost) {
                     this.money -= this.cost;
                     this.plants++;
-                    this.cost = Math.floor(this.cost * 1.5);
+                    this.cost = Math.floor(this.cost * 1.2); // Slower price increase
                     this.renderPlants();
+                    this.updateUI();
                 }
             },
             renderPlants() {
