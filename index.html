@@ -9,22 +9,23 @@
             display: flex; flex-direction: column;
         }
 
-        /* Wall: Added a subtle Mylar-inspired sheen */
-        .wall { 
-            height: 60%; width: 100%; 
-            background: radial-gradient(circle at 50% 50%, #2a2a2a 0%, #151515 100%);
-            border-bottom: 4px solid #333;
-        }
+        /* Wall: Flat matte black/grey to make the floor pop */
+        .wall { height: 60%; width: 100%; background: #121212; border-bottom: 2px solid #333; }
 
-        /* Floor: Updated to a realistic dark concrete/industrial texture */
+        /* Floor: Industrial "Grid" Mat / Tray Texture */
         .floor { 
             height: 40%; width: 100%;
-            background: radial-gradient(ellipse at 50% 10%, #2a2a2a 0%, #0a0a0a 70%);
+            background-color: #0a0a0a;
+            /* Creates a subtle grid pattern that defines the surface */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
             display: flex; justify-content: center; align-items: flex-end; 
             gap: 5vw; padding-bottom: 5vh;
         }
 
-        /* Plants: Kept your working proportions */
+        /* Plants: Kept your proportions */
         .plant-container { display: flex; flex-direction: column; align-items: center; height: 25vh; }
         .leaf { width: 15vh; height: 15vh; background: #2d5a27; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
         .stem { width: 1vh; height: 5vh; background: #4e342e; }
