@@ -5,25 +5,29 @@
     <style>
         body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
         #score { font-size: 2em; margin: 20px; }
-        button { padding: 15px 30px; font-size: 1.2em; cursor: pointer; }
+        button { padding: 15px 30px; font-size: 1.2em; }
     </style>
 </head>
 <body>
     <h1>My Idle Game</h1>
     <div id="score">Points: 0</div>
-    <button onclick="addPoint()">Click Me!</button>
+    <button id="clickBtn">Click Me!</button>
 
     <script>
         let score = 0;
+        let autoClickers = 0;
         const scoreDisplay = document.getElementById("score");
 
-        function addPoint() {
+        document.getElementById("clickBtn").addEventListener("click", () => {
             score++;
             scoreDisplay.innerText = "Points: " + score;
-        }
+        });
+
+        // The "Idle" Loop: Adds points every second
+        setInterval(() => {
+            score += autoClickers;
+            scoreDisplay.innerText = "Points: " + score;
+        }, 1000);
     </script>
 </body>
 </html>
-
-
-
