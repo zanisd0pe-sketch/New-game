@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon</title>
+    <title>Dispo Tycoon - Master Build</title>
     <style>
         body { background: #000; color: #fff; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; }
         .room-view { height: 100vh; width: 100vw; display: none; flex-direction: column; align-items: center; justify-content: space-between; position: relative; }
         .active { display: flex; }
 
-        /* Grow Room Background */
+        /* Grow Room Environment */
         #farm { background: linear-gradient(180deg, #111 0%, #000 100%); }
-        
         .vent-duct { width: 100%; height: 50px; background: linear-gradient(to bottom, #777, #bbb, #777); border-bottom: 5px solid #444; }
         
-        /* Polished Plant Style */
-        .plant-area { display: flex; gap: 40px; align-items: flex-end; margin-bottom: 60px; }
+        /* High-Detail Plant & Pot Assets */
+        .plant-area { display: flex; gap: 40px; align-items: flex-end; margin-bottom: 80px; }
         .pot-box { display: flex; flex-direction: column; align-items: center; }
         
-        /* Realistic-Stylized Leaf Effect */
         .plant { 
             width: 160px; height: 160px; 
             background: conic-gradient(from 0deg, #2e7d32 0deg 60deg, #388e3c 60deg 120deg, #2e7d32 120deg 180deg, #388e3c 180deg 240deg, #2e7d32 240deg 360deg);
             border-radius: 40% 40% 30% 30% / 60% 60% 30% 30%; 
             margin-bottom: -30px; border: 3px solid #1b5e20;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
         }
         
-        .pot { width: 100px; height: 90px; background: #4e342e; border-top: 15px solid #3e2723; border-radius: 5px; }
-
+        .pot { width: 100px; height: 90px; background: #4e342e; border-top: 15px solid #3e2723; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.5); }
         .tarp-floor { width: 100%; height: 140px; background: #0a0a0a; border-top: 4px solid #222; }
 
+        /* Navigation & UI */
         .controls { text-align: center; margin-top: 20px; z-index: 10; }
-        #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
         .map-btn { position: fixed; top: 20px; right: 20px; z-index: 200; padding: 15px; cursor: pointer; background: #222; border: 1px solid #444; color: #fff; }
+        #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; gap: 20px; }
     </style>
 </head>
 <body>
@@ -45,32 +44,40 @@
 
     <div id="farm" class="room-view active">
         <div class="vent-duct"></div>
-        
         <div class="controls">
             <h2>SUPPLY: <span id="weed">0</span>g</h2>
             <button onclick="growWeed()">HARVEST</button>
         </div>
-
         <div class="plant-area">
             <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
             <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
             <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
         </div>
-        
         <div class="tarp-floor"></div>
     </div>
 
     <div id="shop" class="room-view">
         <h1>DISPENSARY</h1>
         <p>Cash: $<span id="money">0</span></p>
+        <button onclick="sellWeed()">SELL ALL</button>
     </div>
 
     <script>
         let money = 0; let weed = 0;
         function toggleMap() { const m = document.getElementById('map-menu'); m.style.display = (m.style.display === 'flex') ? 'none' : 'flex'; }
         function showRoom(id) { document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active')); document.getElementById(id).classList.add('active'); toggleMap(); }
-        function growWeed() { weed += 3; document.getElementById("weed").innerText = weed; }
-        setInterval(() => { if (weed >= 1) { weed--; money += 10; document.getElementById("weed").innerText = weed; document.getElementById("money").innerText = money; } }, 2000);
+        
+        function growWeed() { 
+            weed += 3; 
+            document.getElementById("weed").innerText = weed; 
+        }
+        
+        function sellWeed() {
+            money += (weed * 10);
+            weed = 0;
+            document.getElementById("money").innerText = money;
+            document.getElementById("weed").innerText = weed;
+        }
     </script>
 </body>
 </html>
