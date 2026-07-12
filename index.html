@@ -2,39 +2,39 @@
 <html>
 <head>
     <style>
-        body { margin: 0; background: #111; height: 100vh; overflow: hidden; font-family: sans-serif; }
-
-        .room-stage { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
-
-        /* The Wall: Mylar-like, dark and reflective */
-        .wall { height: 65%; width: 100%; background: #1a1a1a; border-bottom: 3px solid #333; }
-
-        /* The Floor: Real concrete texture (fine noise) */
-        .floor { 
-            height: 35%; width: 100%;
-            background-color: #333;
-            /* Fine noise texture for concrete */
-            background-image: radial-gradient(#444 1px, transparent 1px);
-            background-size: 4px 4px;
-            display: flex; justify-content: center; align-items: flex-start; 
-            gap: 5vw; padding-top: 2vh;
+        body { margin: 0; background: #000; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        
+        /* Enclosure: Dark, moody, and lit from the center */
+        .room { 
+            flex: 1; 
+            background: radial-gradient(circle at 50% 50%, #222 0%, #050505 80%);
+            display: flex; justify-content: center; align-items: center; gap: 40px;
         }
 
-        /* Plants: Reduced size to stop clipping */
-        .plant-container { display: flex; flex-direction: column; align-items: center; }
-        .leaf { width: 10vh; height: 10vh; background: #2d5a27; border-radius: 50%; }
-        .stem { width: 0.8vh; height: 4vh; background: #4e342e; }
-        .pot { width: 7vh; height: 6vh; background: #222; border: 0.3vh solid #444; border-radius: 0 0 1vh 1vh; }
+        /* Floor: Heavy, textured concrete */
+        .floor { 
+            position: absolute; bottom: 0; width: 100%; height: 35%;
+            background-color: #2a2a2a;
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 8px 8px;
+            border-top: 5px solid #111;
+        }
+
+        /* Better Plant Art: Jagged leaf and pot */
+        .plant { display: flex; flex-direction: column; align-items: center; z-index: 2; }
+        .leaf { 
+            width: 100px; height: 100px; background: #2d5a27;
+            clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
+        }
+        .pot { width: 60px; height: 50px; background: #333; border: 2px solid #444; border-radius: 5px; margin-top: -5px; }
     </style>
 </head>
 <body>
-    <div class="room-stage">
-        <div class="wall"></div>
-        <div class="floor">
-            <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
-        </div>
+    <div class="room">
+        <div class="floor"></div>
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
     </div>
 </body>
 </html>
