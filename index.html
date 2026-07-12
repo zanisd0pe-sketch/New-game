@@ -9,23 +9,25 @@
             display: flex; flex-direction: column;
         }
 
-        /* Wall: Flat matte black/grey to make the floor pop */
+        /* Wall */
         .wall { height: 60%; width: 100%; background: #121212; border-bottom: 2px solid #333; }
 
-        /* Floor: Industrial "Grid" Mat / Tray Texture */
+        /* Concrete Basement Floor */
         .floor { 
             height: 40%; width: 100%;
-            background-color: #0a0a0a;
-            /* Creates a subtle grid pattern that defines the surface */
+            background-color: #3a3a3a;
+            /* Creates a random "pitted" concrete texture effect */
             background-image: 
-                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
+                radial-gradient(circle at 20% 30%, #4a4a4a 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, #2a2a2a 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(0,0,0,0.2) 0%, transparent 50%);
+            background-size: 200px 200px;
             display: flex; justify-content: center; align-items: flex-end; 
             gap: 5vw; padding-bottom: 5vh;
+            border-top: 4px solid #222;
         }
 
-        /* Plants: Kept your proportions */
+        /* Plants */
         .plant-container { display: flex; flex-direction: column; align-items: center; height: 25vh; }
         .leaf { width: 15vh; height: 15vh; background: #2d5a27; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
         .stem { width: 1vh; height: 5vh; background: #4e342e; }
@@ -38,7 +40,7 @@
         <div class="floor">
             <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
             <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="leaf"></div><div class="pot"></div></div>
+            <div class="plant-container"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
         </div>
     </div>
 </body>
