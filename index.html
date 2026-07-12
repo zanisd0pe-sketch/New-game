@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=800, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
-        body { margin: 0; background: #000; color: #fff; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        body { 
+            margin: 0; background: #000; color: #fff; font-family: monospace; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; overflow: hidden; 
+            touch-action: none; /* Prevents touch panning/zooming */
+            -webkit-user-select: none; user-select: none; 
+        }
         
-        /* The Fixed-Size Game Container */
-        #game-window { width: 800px; height: 600px; background: #000; border: 4px solid #333; position: relative; }
+        #game-window { 
+            width: 800px; height: 600px; background: #000; 
+            border: 4px solid #333; position: relative;
+            overflow: hidden;
+        }
         
         .hud { padding: 10px; text-align: center; background: #111; }
-        
-        /* Fixed Room Layers */
         .wall { height: 360px; width: 100%; background: #121212; }
         .floor { 
             height: 240px; width: 100%;
