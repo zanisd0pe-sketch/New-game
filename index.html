@@ -4,37 +4,65 @@
     <title>Dispo Tycoon</title>
     <style>
         body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
-        .stats { font-size: 1.5em; margin: 10px; }
-        button { padding: 15px 25px; font-size: 1.1em; margin: 5px; cursor: pointer; }
+        .grid { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .box { border: 2px solid #444; padding: 20px; width: 200px; }
+        button { padding: 10px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
     <h1>Dispo Tycoon</h1>
-    <div class="stats">Money: $<span id="money">0</span></div>
-    <div class="stats">Product: <span id="weed">0</span>g</div>
-    
-    <button onclick="growWeed()">Grow Weed (+1g)</button>
-    <button onclick="sellWeed()">Sell Weed ($10/g)</button>
+    <div class="grid">
+        <div class="box">
+            <h3>Farm</h3>
+            <p>Product: <span id="weed">0</span>g</p>
+            <p>Growers: <span id="growers">0</span></p>
+            <button onclick="buyGrower()">Hire Grower ($50)</button>
+        </div>
+        <div class="box">
+            <h3>Countertop</h3>
+            <p>Money: $<span id="money">0</span></p>
+            <p>Customers: <span id="customers">1</span></p>
+            <p id="status">Open for business...</p>
+        </div>
+    </div>
 
     <script>
         let money = 0;
         let weed = 0;
+        let growers = 0;
+        let pricePerGram = 10;
 
-        function growWeed() {
-            weed++;
-            document.getElementById("weed").innerText = weed;
-        }
-
-        function sellWeed() {
-            if (weed > 0) {
-                weed--;
-                money += 10;
-                document.getElementById("weed").innerText = weed;
-                document.getElementById("money").innerText = money;
-            } else {
-                alert("You're out of product!");
+        function buyGrower() {
+            if (money >= 50) {
+                money -= 50;
+                growers++;
+                updateDisplay();
             }
         }
+
+        function updateDisplay() {
+            document.getElementById("money").innerText = money;
+            document.getElementById("weed").innerText = weed;
+            document.getElementById("growers").innerText = growers;
+        }
+
+        // Production Loop (Every 1 second)
+        setInterval(() => {
+            weed += growers;
+            updateDisplay();
+        }, 1000);
+
+        // Sales Loop (Customers buy every 3 seconds)
+        setInterval(() => {
+            if (weed >= 1) {
+                weed--;
+                money += pricePerGram;
+                document.getElementById("status").innerText = "Customer bought 1g!";
+            } else {
+                document.getElementById("status").innerText = "Counter empty...";
+            }
+            updateDisplay();
+        }, 3000);
     </script>
 </body>
 </html>
