@@ -6,15 +6,23 @@
         body { margin: 0; background: #000; color: #fff; font-family: monospace; overflow: hidden; touch-action: none; }
         #game-wrapper { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
         .hud { padding: 15px; text-align: center; background: #111; }
-        #farm { flex-grow: 1; display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; gap: 15px; padding: 20px; overflow-y: auto; background-color: #2a2a2a; border-top: 5px solid #111; }
-        .plant-container { display: flex; flex-direction: column; align-items: center; width: 25vw; }
+        #farm { flex-grow: 1; display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; gap: 10px; padding: 20px; overflow-y: auto; background-color: #2a2a2a; border-top: 5px solid #111; }
         
-        /* The NEW Leaf Design */
+        /* New Organic Plant Design */
+        .plant-container { display: flex; flex-direction: column; align-items: center; width: 22vw; margin-bottom: 10px; }
+        .leaf-cluster { width: 20vw; height: 20vw; position: relative; }
         .leaf { 
-            width: 20vw; height: 20vw; background: #2d5a27;
-            clip-path: polygon(50% 0%, 61% 25%, 90% 25%, 68% 45%, 85% 85%, 50% 65%, 15% 85%, 32% 45%, 10% 25%, 39% 25%);
+            position: absolute; width: 8vw; height: 15vw; background: #2d5a27; 
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            transform-origin: bottom center;
         }
-        .pot { width: 12vw; height: 10vh; background: #4a3626; border: 2px solid #2e2117; border-radius: 0 0 5px 5px; margin-top: -5px; }
+        .l1 { transform: rotate(0deg); }
+        .l2 { transform: rotate(72deg); }
+        .l3 { transform: rotate(144deg); }
+        .l4 { transform: rotate(216deg); }
+        .l5 { transform: rotate(288deg); }
+        
+        .pot { width: 12vw; height: 10vh; background: #4a3626; border: 2px solid #2e2117; border-radius: 0 0 5px 5px; margin-top: 5px; }
 
         .controls { height: 25vh; display: flex; justify-content: center; align-items: flex-start; padding-top: 2vh; background: #0a0a0a; }
         button { padding: 4vw 8vw; font-size: 6vw; cursor: pointer; background: #3a2a1a; color: #fff; border: 2px solid #5a4a3a; border-radius: 8px; }
@@ -55,7 +63,15 @@
                 const farm = document.getElementById('farm');
                 farm.innerHTML = '';
                 for(let i=0; i<this.plants; i++) {
-                    farm.innerHTML += '<div class="plant-container"><div class="leaf"></div><div class="pot"></div></div>';
+                    farm.innerHTML += `
+                        <div class="plant-container">
+                            <div class="leaf-cluster">
+                                <div class="leaf l1"></div><div class="leaf l2"></div>
+                                <div class="leaf l3"></div><div class="leaf l4"></div>
+                                <div class="leaf l5"></div>
+                            </div>
+                            <div class="pot"></div>
+                        </div>`;
                 }
             }
         };
