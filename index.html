@@ -1,49 +1,46 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Organic Growth</title>
+    <title>Dispo Tycoon: Full Build</title>
     <style>
         body { background: #050505; color: #ccc; font-family: sans-serif; margin: 0; overflow: hidden; }
-        .room-view { height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; }
+        .room-view { height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; background: #0a0a0a; }
 
-        #farm { background: #0a0a0a; }
+        /* Environmental Detail: The Cat */
+        .cat { position: absolute; bottom: 110px; left: 15%; width: 60px; height: 50px; background: #d35400; border-radius: 40% 40% 10% 10%; z-index: 20; }
 
-        .plant-area { display: flex; gap: 60px; align-items: flex-end; flex-grow: 1; margin-bottom: 50px; }
+        /* Environmental Detail: Power Strip/Cables */
+        .power-strip { position: absolute; bottom: 110px; right: 15%; width: 120px; height: 20px; background: #222; border: 2px solid #444; z-index: 20; }
+
+        .plant-row { display: flex; gap: 80px; align-items: flex-end; margin-bottom: 120px; }
         .pot-box { display: flex; flex-direction: column; align-items: center; }
 
-        /* Stem and Leaf Container */
+        /* Stem and Leaf Structure */
         .plant-container { position: relative; display: flex; flex-direction: column; align-items: center; }
-        
-        /* The Stem */
-        .stem { width: 6px; height: 40px; background: #3e2723; margin-bottom: -10px; border-radius: 2px; }
-
-        /* The Fan Leaf */
+        .stem { width: 8px; height: 60px; background: #4e342e; margin-bottom: -10px; border-radius: 2px; }
         .leaf { 
-            width: 160px; height: 160px; background: #2d5a27;
+            width: 200px; height: 200px; background: #2d5a27;
             clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%);
         }
 
-        /* Fabric Grow Bag */
-        .pot { 
-            width: 100px; height: 90px; background: #1a1a1a;
-            border: 2px solid #333; border-radius: 5px 5px 40px 40px;
-            position: relative;
-        }
+        /* Proper Fabric Grow Bag */
+        .pot { width: 130px; height: 110px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 50px 50px; }
+
+        .floor { width: 100%; height: 110px; background: #000; border-top: 4px solid #222; position: absolute; bottom: 0; }
     </style>
 </head>
 <body>
-    <div id="farm" class="room-view">
-        <div class="plant-area">
-            <div class="pot-box">
-                <div class="plant-container">
-                    <div class="leaf"></div>
-                    <div class="stem"></div>
-                </div>
-                <div class="pot"></div>
-            </div>
-            <!-- Repeat for other pots -->
+    <div class="room-view">
+        <div class="cat"></div>
+        <div class="power-strip"></div>
+        
+        <div class="plant-row">
+            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="plant-container"><div class="leaf"></div><div class="stem"></div></div><div class="pot"></div></div>
         </div>
+        
+        <div class="floor"></div>
     </div>
 </body>
 </html>
