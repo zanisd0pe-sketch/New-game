@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Stable Grow Room</title>
     <style>
-        body { margin: 0; background: #000; height: 100vh; overflow: hidden; font-family: sans-serif; }
-        
-        .tent-container {
-            width: 100vw; height: 100vh;
-            background: radial-gradient(circle at 50% 30%, #222 0%, #050505 80%);
-            display: flex; flex-direction: column;
-        }
+        body { margin: 0; background: #0a0a0a; overflow: hidden; height: 100vh; font-family: sans-serif; }
+        .room { width: 100vw; height: 100vh; background: #050505; position: relative; }
 
-        /* The wall/environment section */
-        .wall { flex: 1; position: relative; }
-
-        /* The floor section - where everything stays */
+        /* The floor is now a larger, solid stage */
         .floor { 
-            height: 30%; width: 100%; 
-            background: #080808; 
-            border-top: 4px solid #1a1a1a;
-            display: flex; justify-content: center; align-items: flex-end; gap: 40px;
-            padding-bottom: 20px;
+            position: absolute; bottom: 0; width: 100%; height: 40%;
+            background: #111; border-top: 2px solid #222;
+            display: flex; justify-content: center; align-items: flex-end; gap: 20px;
+            padding-bottom: 30px;
         }
 
-        /* Plants - Fixed size, consistent styling */
-        .plant-wrapper { display: flex; flex-direction: column; align-items: center; }
-        .leaf-shape { 
-            width: 100px; height: 100px; background: #2d5a27; 
-            clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); 
+        /* Plant Group: Now includes Stem + Leaf + Pot */
+        .plant-group { display: flex; flex-direction: column; align-items: center; }
+        .stem { width: 6px; height: 30px; background: #3e2723; }
+        .leaf { 
+            width: 120px; height: 120px; background: #2d5a27;
+            clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%);
+            margin-bottom: -10px;
         }
-        .pot-shape { width: 70px; height: 60px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 20px 20px; }
-        
-        /* Misc items */
-        .item { width: 50px; height: 50px; background: #111; border: 1px solid #333; }
+        .pot { width: 80px; height: 70px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 25px 25px; }
     </style>
 </head>
 <body>
-    <div class="tent-container">
-        <div class="wall"></div>
+    <div class="room">
         <div class="floor">
-            <div class="item"></div>
-            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
-            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
-            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
-            <div class="item"></div>
+            <div class="plant-group"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
+            <div class="plant-group"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
+            <div class="plant-group"><div class="leaf"></div><div class="stem"></div><div class="pot"></div></div>
         </div>
     </div>
 </body>
