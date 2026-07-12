@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Idle Game</title>
+    <title>Dispo Tycoon</title>
     <style>
         body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
-        #score { font-size: 2em; margin: 20px; }
-        button { padding: 15px 30px; font-size: 1.2em; }
+        .stats { font-size: 1.5em; margin: 10px; }
+        button { padding: 15px 25px; font-size: 1.1em; margin: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>My Idle Game</h1>
-    <div id="score">Points: 0</div>
-    <button id="clickBtn">Click Me!</button>
+    <h1>Dispo Tycoon</h1>
+    <div class="stats">Money: $<span id="money">0</span></div>
+    <div class="stats">Product: <span id="weed">0</span>g</div>
+    
+    <button onclick="growWeed()">Grow Weed (+1g)</button>
+    <button onclick="sellWeed()">Sell Weed ($10/g)</button>
 
     <script>
-        let score = 0;
-        let autoClickers = 0;
-        const scoreDisplay = document.getElementById("score");
+        let money = 0;
+        let weed = 0;
 
-        document.getElementById("clickBtn").addEventListener("click", () => {
-            score++;
-            scoreDisplay.innerText = "Points: " + score;
-        });
+        function growWeed() {
+            weed++;
+            document.getElementById("weed").innerText = weed;
+        }
 
-        // The "Idle" Loop: Adds points every second
-        setInterval(() => {
-            score += autoClickers;
-            scoreDisplay.innerText = "Points: " + score;
-        }, 1000);
+        function sellWeed() {
+            if (weed > 0) {
+                weed--;
+                money += 10;
+                document.getElementById("weed").innerText = weed;
+                document.getElementById("money").innerText = money;
+            } else {
+                alert("You're out of product!");
+            }
+        }
     </script>
 </body>
 </html>
