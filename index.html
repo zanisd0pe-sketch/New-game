@@ -3,66 +3,59 @@
 <head>
     <title>Dispo Tycoon</title>
     <style>
-        body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; }
-        .grid { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-        .box { border: 2px solid #444; padding: 20px; width: 200px; }
-        button { padding: 10px; cursor: pointer; margin-top: 10px; }
+        body { background: #222; color: #eee; font-family: 'Courier New', monospace; text-align: center; }
+        .dispensary-layout { display: flex; justify-content: center; gap: 50px; margin-top: 50px; }
+        .room { border: 4px solid #555; padding: 30px; width: 300px; background: #333; }
+        .counter-top { border-bottom: 8px solid #8B4513; height: 100px; margin-bottom: 20px; display: flex; align-items: flex-end; justify-content: center; font-size: 2em; }
+        button { padding: 15px; cursor: pointer; background: #4CAF50; color: white; border: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>Dispo Tycoon</h1>
-    <div class="grid">
-        <div class="box">
-            <h3>Farm</h3>
-            <p>Product: <span id="weed">0</span>g</p>
-            <p>Growers: <span id="growers">0</span></p>
+    <h1>DISPO TYCOON</h1>
+    
+    <div class="dispensary-layout">
+        <!-- GROW ROOM -->
+        <div class="room">
+            <h2>GROW ROOM</h2>
+            <p>Supply: <span id="weed">0</span>g</p>
+            <p>Growers Hired: <span id="growers">0</span></p>
             <button onclick="buyGrower()">Hire Grower ($50)</button>
         </div>
-        <div class="box">
-            <h3>Countertop</h3>
-            <p>Money: $<span id="money">0</span></p>
-            <p>Customers: <span id="customers">1</span></p>
-            <p id="status">Open for business...</p>
+
+        <!-- DISPENSARY AREA -->
+        <div class="room">
+            <div class="counter-top">🛒</div>
+            <h2>COUNTERTOP</h2>
+            <p>Cash: $<span id="money">0</span></p>
+            <p id="status">Waiting for customers...</p>
         </div>
     </div>
 
     <script>
-        let money = 0;
-        let weed = 0;
-        let growers = 0;
-        let pricePerGram = 10;
-
+        let money = 0; let weed = 0; let growers = 0;
+        
         function buyGrower() {
-            if (money >= 50) {
-                money -= 50;
-                growers++;
-                updateDisplay();
-            }
+            if (money >= 50) { money -= 50; growers++; updateDisplay(); }
         }
-
         function updateDisplay() {
             document.getElementById("money").innerText = money;
             document.getElementById("weed").innerText = weed;
             document.getElementById("growers").innerText = growers;
         }
 
-        // Production Loop (Every 1 second)
-        setInterval(() => {
-            weed += growers;
-            updateDisplay();
-        }, 1000);
+        // Production
+        setInterval(() => { weed += growers; updateDisplay(); }, 1000);
 
-        // Sales Loop (Customers buy every 3 seconds)
+        // Sales at the Countertop
         setInterval(() => {
             if (weed >= 1) {
-                weed--;
-                money += pricePerGram;
-                document.getElementById("status").innerText = "Customer bought 1g!";
+                weed--; money += 10;
+                document.getElementById("status").innerText = "Customer at counter!";
             } else {
-                document.getElementById("status").innerText = "Counter empty...";
+                document.getElementById("status").innerText = "Waiting for stock...";
             }
             updateDisplay();
-        }, 3000);
+        }, 2000);
     </script>
 </body>
 </html>
