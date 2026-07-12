@@ -4,27 +4,28 @@
     <title>Dispo Tycoon</title>
     <style>
         body { background: #1a1a1a; color: white; font-family: 'Courier New', monospace; margin: 0; }
-        
-        /* Room Styling */
         .room-view { height: 100vh; display: none; flex-direction: column; justify-content: center; align-items: center; }
         .active { display: flex; }
         
-        /* Farm Background: Dark Green Grow Room Vibe */
-        #farm { background: radial-gradient(circle, #1b3022 0%, #0a0a0a 100%); }
+        /* GROW ROOM ASSETS */
+        #farm { 
+            background-image: repeating-linear-gradient(45deg, #444 0, #444 10px, #333 10px, #333 20px); 
+            position: relative; 
+        }
+        .floor { position: absolute; bottom: 0; width: 100%; height: 50px; background: #2a2a2a; border-top: 5px solid #000; }
+        .light { position: absolute; top: 0; width: 200px; height: 20px; background: #fff176; box-shadow: 0 0 50px #fff176; }
+        .pot { width: 80px; height: 80px; background: #8B4513; border-radius: 0 0 20px 20px; margin: 10px; display: inline-block; }
         
-        /* Map Overlay */
+        /* MAP OVERLAY */
         #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.9); flex-direction: column; justify-content: center; align-items: center; z-index: 10; }
-        
         button { padding: 15px 30px; cursor: pointer; background: #333; color: white; border: 1px solid #555; margin: 10px; font-size: 1.2em; }
         .map-btn { position: fixed; top: 10px; right: 10px; z-index: 20; }
     </style>
 </head>
 <body>
 
-    <!-- MAP BUTTON (Floating) -->
     <button class="map-btn" onclick="toggleMap()">MAP</button>
 
-    <!-- MAP OVERLAY -->
     <div id="map-menu">
         <button onclick="showRoom('farm')">Go to Farm</button>
         <button onclick="showRoom('shop')">Go to Dispensary</button>
@@ -32,9 +33,15 @@
 
     <!-- FARM ROOM -->
     <div id="farm" class="room-view active">
+        <div class="light"></div>
         <h1>GROW ROOM</h1>
+        <div>
+            <div class="pot"></div>
+            <div class="pot"></div>
+        </div>
         <p>Supply: <span id="weed">0</span>g</p>
         <button onclick="growWeed()">Manual Harvest</button>
+        <div class="floor"></div>
     </div>
 
     <!-- DISPENSARY ROOM -->
@@ -46,26 +53,11 @@
 
     <script>
         let money = 0; let weed = 0;
-
-        function toggleMap() {
-            const map = document.getElementById('map-menu');
-            map.style.display = (map.style.display === 'flex') ? 'none' : 'flex';
-        }
-
-        function showRoom(roomId) {
-            document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active'));
-            document.getElementById(roomId).classList.add('active');
-            toggleMap(); // Hide map after picking
-        }
-
+        function toggleMap() { const map = document.getElementById('map-menu'); map.style.display = (map.style.display === 'flex') ? 'none' : 'flex'; }
+        function showRoom(roomId) { document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active')); document.getElementById(roomId).classList.add('active'); toggleMap(); }
         function growWeed() { weed += 1; document.getElementById("weed").innerText = weed; }
-
         setInterval(() => {
-            if (weed >= 1) {
-                weed--; money += 10;
-                document.getElementById("weed").innerText = weed;
-                document.getElementById("money").innerText = money;
-            }
+            if (weed >= 1) { weed--; money += 10; document.getElementById("weed").innerText = weed; document.getElementById("money").innerText = money; }
         }, 2000);
     </script>
 </body>
