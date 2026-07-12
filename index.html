@@ -2,43 +2,35 @@
 <html>
 <head>
     <style>
-        body { margin: 0; background: #000; height: 100vh; overflow: hidden; }
-        
-        .room-stage {
-            width: 100vw; height: 100vh;
-            display: flex; flex-direction: column;
+        body { margin: 0; background: #000; height: 100vh; display: flex; flex-direction: column; }
+
+        /* The main display area */
+        .grow-zone {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
 
-        /* Wall: Dark, moody */
-        .wall { height: 60%; width: 100%; background: #121212; }
+        /* The floor is now a fixed-height bar at the bottom, not a container for everything */
+        .floor-base { height: 100px; background: #222; border-top: 4px solid #444; }
 
-        /* Floor: Anchored container */
-        .floor { 
-            height: 40%; width: 100%;
-            background-color: #2a2a2a;
-            background-image: radial-gradient(#333 1px, transparent 1px);
-            background-size: 8px 8px;
-            display: flex; justify-content: center; align-items: flex-end; 
-            gap: 5vw; padding-bottom: 2vh;
-        }
-
-        /* Plants: Sized up so they don't look like tiny stars */
-        .plant-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 10px; }
+        /* Larger, clearly defined plants */
+        .plant { width: 80px; text-align: center; }
         .leaf { 
-            width: 120px; height: 120px; background: #2d5a27;
+            width: 80px; height: 80px; background: #2d5a27;
             clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);
         }
-        .pot { width: 80px; height: 70px; background: #333; border: 3px solid #555; border-radius: 5px; }
+        .pot { width: 60px; height: 60px; background: #333; margin: 0 auto; }
     </style>
 </head>
 <body>
-    <div class="room-stage">
-        <div class="wall"></div>
-        <div class="floor">
-            <div class="plant-container"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="plant-container"><div class="leaf"></div><div class="pot"></div></div>
-        </div>
+    <div class="grow-zone">
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
+        <div class="plant"><div class="leaf"></div><div class="pot"></div></div>
     </div>
+    <div class="floor-base"></div>
 </body>
 </html>
