@@ -8,22 +8,28 @@
         .active { display: flex; }
 
         /* Grow Room Background */
-        #farm { background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%); }
+        #farm { background: linear-gradient(180deg, #111 0%, #000 100%); }
         
-        /* Ceiling Vent (Proportional at top) */
         .vent-duct { width: 100%; height: 50px; background: linear-gradient(to bottom, #777, #bbb, #777); border-bottom: 5px solid #444; }
         
-        /* Plant Area (Balanced in middle/bottom) */
-        .plant-area { display: flex; gap: 80px; align-items: flex-end; margin-bottom: 50px; }
+        /* Polished Plant Style */
+        .plant-area { display: flex; gap: 40px; align-items: flex-end; margin-bottom: 60px; }
         .pot-box { display: flex; flex-direction: column; align-items: center; }
-        .pot { width: 110px; height: 90px; background: #3d2b1f; border-top: 5px solid #222; border-radius: 5px; }
-        .plant { width: 150px; height: 150px; background: #2e7d32; border-radius: 50% 50% 40% 40%; margin-bottom: -30px; border: 4px solid #1e4d22; }
+        
+        /* Realistic-Stylized Leaf Effect */
+        .plant { 
+            width: 160px; height: 160px; 
+            background: conic-gradient(from 0deg, #2e7d32 0deg 60deg, #388e3c 60deg 120deg, #2e7d32 120deg 180deg, #388e3c 180deg 240deg, #2e7d32 240deg 360deg);
+            border-radius: 40% 40% 30% 30% / 60% 60% 30% 30%; 
+            margin-bottom: -30px; border: 3px solid #1b5e20;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .pot { width: 100px; height: 90px; background: #4e342e; border-top: 15px solid #3e2723; border-radius: 5px; }
 
-        /* Tarp Floor (Covers bottom) */
-        .tarp-floor { width: 100%; height: 150px; background: #0a0a0a; border-top: 5px solid #222; }
+        .tarp-floor { width: 100%; height: 140px; background: #0a0a0a; border-top: 4px solid #222; }
 
-        /* UI Controls (Top section) */
-        .controls { text-align: center; margin-top: 20px; }
+        .controls { text-align: center; margin-top: 20px; z-index: 10; }
         #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
         .map-btn { position: fixed; top: 20px; right: 20px; z-index: 200; padding: 15px; cursor: pointer; background: #222; border: 1px solid #444; color: #fff; }
     </style>
