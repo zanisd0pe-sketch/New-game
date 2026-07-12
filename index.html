@@ -3,64 +3,52 @@
 <head>
     <title>Dispo Tycoon</title>
     <style>
-        body { background: #1a1a1a; color: #fff; font-family: 'Courier New', monospace; text-align: center; }
-        .game-layout { display: flex; justify-content: center; gap: 40px; margin-top: 50px; }
-        .room { border: 3px solid #444; padding: 20px; width: 350px; background: #252525; border-radius: 8px; }
-        .asset-box { border: 1px solid #666; margin: 10px 0; padding: 10px; background: #333; }
-        button { padding: 10px 20px; cursor: pointer; background: #2e7d32; color: white; border: none; font-weight: bold; }
+        body { background: #1a1a1a; color: white; font-family: 'Courier New', monospace; margin: 0; }
+        .room-view { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; display: none; }
+        .active { display: flex; }
+        .nav-map { position: fixed; bottom: 0; width: 100%; background: #333; padding: 10px; display: flex; justify-content: space-around; }
+        button { padding: 15px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>DISPO TYCOON</h1>
-    <div class="game-layout">
-        <!-- FARM ROOM -->
-        <div class="room" id="farm">
-            <h2>GROW ROOM</h2>
-            <div class="asset-box">
-                <p>Supply: <span id="weed">0</span>g</p>
-                <button onclick="growWeed()">Manual Harvest</button>
-            </div>
-            <div class="asset-box">
-                <p>Lighting Asset: Level <span id="lightLevel">1</span></p>
-                <button onclick="upgradeLighting()">Upgrade ($50)</button>
-            </div>
-        </div>
-        <!-- DISPENSARY ROOM -->
-        <div class="room" id="shop">
-            <h2>DISPENSARY</h2>
-            <div class="asset-box">
-                <p>Cash: $<span id="money">0</span></p>
-                <p id="status">Open for business</p>
-            </div>
-            <div class="asset-box">
-                <p>Display Case Asset: Level <span id="caseLevel">1</span></p>
-                <button onclick="upgradeCase()">Upgrade ($50)</button>
-            </div>
-        </div>
+
+    <!-- FARM ROOM -->
+    <div id="farm" class="room-view active">
+        <h1>GROW ROOM</h1>
+        <p>Supply: <span id="weed">0</span>g</p>
+        <button onclick="growWeed()">Manual Harvest</button>
     </div>
+
+    <!-- DISPENSARY ROOM -->
+    <div id="shop" class="room-view">
+        <h1>DISPENSARY</h1>
+        <p>Cash: $<span id="money">0</span></p>
+        <p id="status">Open for business</p>
+    </div>
+
+    <!-- MAP NAVIGATION -->
+    <div class="nav-map">
+        <button onclick="showRoom('farm')">Map: Farm</button>
+        <button onclick="showRoom('shop')">Map: Dispensary</button>
+    </div>
+
     <script>
         let money = 0; let weed = 0;
-        let lightLevel = 1; let caseLevel = 1;
 
-        function growWeed() { weed += 1; updateUI(); }
-        function upgradeLighting() { if (money >= 50) { money -= 50; lightLevel++; updateUI(); } }
-        function upgradeCase() { if (money >= 50) { money -= 50; caseLevel++; updateUI(); } }
-
-        function updateUI() {
-            document.getElementById("weed").innerText = weed;
-            document.getElementById("money").innerText = money;
-            document.getElementById("lightLevel").innerText = lightLevel;
-            document.getElementById("caseLevel").innerText = caseLevel;
+        function showRoom(roomId) {
+            document.querySelectorAll('.room-view').forEach(r => r.classList.remove('active'));
+            document.getElementById(roomId).classList.add('active');
         }
+
+        function growWeed() { weed += 1; document.getElementById("weed").innerText = weed; }
 
         setInterval(() => {
             if (weed >= 1) {
-                weed--; money += (10 * caseLevel);
+                weed--; money += 10;
+                document.getElementById("weed").innerText = weed;
+                document.getElementById("money").innerText = money;
                 document.getElementById("status").innerText = "Sold 1g!";
-            } else {
-                document.getElementById("status").innerText = "Waiting for stock...";
             }
-            updateUI();
         }, 2000);
     </script>
 </body>
