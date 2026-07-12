@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dispo Tycoon: Immersive Room</title>
+    <title>Dispo Tycoon: Stable Grow Room</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #050505; color: #fff; font-family: sans-serif; overflow: hidden; }
+        body { margin: 0; background: #000; height: 100vh; overflow: hidden; font-family: sans-serif; }
         
-        /* The "Room" container provides the depth */
-        .room { 
-            position: relative; width: 100%; height: 100%; 
-            background: linear-gradient(to bottom, #111 0%, #000 60%);
+        .tent-container {
+            width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 50% 30%, #222 0%, #050505 80%);
+            display: flex; flex-direction: column;
         }
 
-        /* The Mylar Wall texture, applied to the top half */
-        .wall { 
-            height: 60%; width: 100%;
-            background-image: radial-gradient(circle at 50% 50%, #222 0%, #000 70%);
-            display: flex; justify-content: center; align-items: center;
-        }
+        /* The wall/environment section */
+        .wall { flex: 1; position: relative; }
 
-        /* The Floor - Fixed and grounded */
+        /* The floor section - where everything stays */
         .floor { 
-            height: 40%; width: 100%; background: #080808;
+            height: 30%; width: 100%; 
+            background: #080808; 
             border-top: 4px solid #1a1a1a;
-            display: flex; justify-content: space-around; align-items: flex-end;
-            padding-bottom: 20px; box-sizing: border-box;
+            display: flex; justify-content: center; align-items: flex-end; gap: 40px;
+            padding-bottom: 20px;
         }
 
-        /* The Assets: Polished and placed */
-        .pot-box { display: flex; flex-direction: column; align-items: center; }
-        .leaf { width: 100px; height: 100px; background: #2d5a27; clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .pot { width: 70px; height: 60px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 20px 20px; }
+        /* Plants - Fixed size, consistent styling */
+        .plant-wrapper { display: flex; flex-direction: column; align-items: center; }
+        .leaf-shape { 
+            width: 100px; height: 100px; background: #2d5a27; 
+            clip-path: polygon(50% 10%, 60% 30%, 85% 20%, 70% 45%, 95% 55%, 65% 60%, 80% 90%, 50% 70%, 20% 90%, 35% 60%, 5% 55%, 30% 45%, 15% 20%, 40% 30%); 
+        }
+        .pot-shape { width: 70px; height: 60px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px 5px 20px 20px; }
         
-        /* Environmental details to make it feel like a room */
-        .clutter { width: 50px; height: 50px; background: #111; border: 1px solid #333; border-radius: 5px; }
+        /* Misc items */
+        .item { width: 50px; height: 50px; background: #111; border: 1px solid #333; }
     </style>
 </head>
 <body>
-    <div class="room">
-        <div class="wall">
-            <div style="color: #444; font-size: 20px; letter-spacing: 5px;">GROW TENT</div>
-        </div>
+    <div class="tent-container">
+        <div class="wall"></div>
         <div class="floor">
-            <div class="clutter"></div>
-            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="pot-box"><div class="leaf"></div><div class="pot"></div></div>
-            <div class="clutter"></div>
+            <div class="item"></div>
+            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
+            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
+            <div class="plant-wrapper"><div class="leaf-shape"></div><div class="pot-shape"></div></div>
+            <div class="item"></div>
         </div>
     </div>
 </body>
