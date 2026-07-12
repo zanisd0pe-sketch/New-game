@@ -3,26 +3,24 @@
 <head>
     <title>Dispo Tycoon</title>
     <style>
-        body { background: #050505; color: #fff; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; }
-        .room-view { height: 100vh; display: none; flex-direction: column; align-items: center; position: relative; }
+        body { background: #000; color: #fff; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; }
+        .room-view { height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 20px; position: relative; }
         .active { display: flex; }
 
-        /* Industrial Grow Room */
-        #farm { background: linear-gradient(to bottom, #111, #000); }
+        /* Grow Room: Professional Tent Vibe */
+        #farm { background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); }
         
-        /* Realistic Lighting/Ventilation Rig */
-        .ceiling-rig { width: 90%; height: 100px; background: #1a1a1a; margin-top: 20px; border-bottom: 5px solid #333; display: flex; justify-content: space-around; align-items: center; border-radius: 5px; }
-        .light-unit { width: 120px; height: 60px; background: #444; border: 2px solid #666; box-shadow: 0 10px 30px rgba(255, 200, 50, 0.4); }
-        .vent-duct { width: 80px; height: 80px; background: #333; border: 2px solid #555; border-radius: 50%; }
+        /* Pro Ventilation Duct */
+        .ventilation-duct { width: 100%; height: 60px; background: linear-gradient(90deg, #999, #ccc, #999); border-bottom: 5px solid #666; margin-bottom: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        /* Staged Pots */
+        .shelf { display: flex; gap: 60px; margin-top: 20px; }
+        .pot-box { display: flex; flex-direction: column; align-items: center; }
+        .pot { width: 100px; height: 90px; background: #3e2723; border-radius: 5px; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.5); }
+        .plant { width: 130px; height: 130px; background: #2e7d32; border-radius: 50% 50% 40% 40%; margin-bottom: -30px; box-shadow: 0 0 20px #1b5e20; border: 2px solid #1e4d22; }
 
-        /* Side-view Staged Plants */
-        .bench { width: 85%; height: 20px; background: #222; margin-top: 150px; border-bottom: 10px solid #111; }
-        .plant-area { display: flex; gap: 50px; margin-top: -120px; }
-        .plant-side { width: 100px; height: 160px; background: #1b5e20; border-radius: 20px 20px 5px 5px; border: 4px solid #004d40; }
-        .pot-side { width: 110px; height: 80px; background: #3e2723; margin-top: -20px; border-radius: 0 0 10px 10px; }
-
-        .tarp-floor { width: 100%; height: 120px; background: #080808; position: absolute; bottom: 0; border-top: 2px solid #222; }
-
+        .tarp-floor { width: 100%; height: 200px; background: #0a0a0a; border-top: 4px solid #333; position: absolute; bottom: 0; }
+        
         #map-menu { display: none; position: fixed; top: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 100; justify-content: center; align-items: center; }
         .map-btn { position: fixed; top: 20px; right: 20px; z-index: 200; padding: 15px; cursor: pointer; background: #222; color: #fff; border: 1px solid #444; }
     </style>
@@ -37,21 +35,16 @@
     </div>
 
     <div id="farm" class="room-view active">
-        <div class="ceiling-rig">
-            <div class="light-unit"></div>
-            <div class="vent-duct"></div>
-            <div class="light-unit"></div>
+        <div class="ventilation-duct"></div>
+        
+        <div class="shelf">
+            <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
+            <div class="pot-box"><div class="plant"></div><div class="pot"></div></div>
         </div>
 
-        <div class="plant-area">
-            <div style="text-align:center"><div class="plant-side"></div><div class="pot-side"></div></div>
-            <div style="text-align:center"><div class="plant-side"></div><div class="pot-side"></div></div>
-            <div style="text-align:center"><div class="plant-side"></div><div class="pot-side"></div></div>
-        </div>
-        <div class="bench"></div>
-        
-        <h2 style="margin-top: 50px;">SUPPLY: <span id="weed">0</span>g</h2>
-        <button onclick="growWeed()">HARVEST</button>
+        <h2 style="margin-top: 50px; z-index: 2;">SUPPLY: <span id="weed">0</span>g</h2>
+        <button onclick="growWeed()" style="z-index: 2;">HARVEST</button>
         
         <div class="tarp-floor"></div>
     </div>
